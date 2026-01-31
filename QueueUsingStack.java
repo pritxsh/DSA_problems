@@ -60,8 +60,9 @@ class OueueUsingStack{
 
         System.out.println(queue.dequeue());
         System.out.println(queue.dequeue());
+        queue.enqueue(27);
         System.out.println(queue.dequeue());
-        System.out.println(queue.dequeue());
+        // System.out.println(queue.dequeue());
         // uncomment below print to get empty queue exception.
         // System.out.println(queue.dequeue());
     }
