@@ -1,14 +1,15 @@
+
 import java.util.*;
 
 final class myQueue{
 
     Queue<Integer> queue = new LinkedList<>();
 
-    public void enqueue(Integer elem){
+    public void enqueue(int elem){
             queue.add(elem);
     }
 
-    public Integer dequeue(){
+    public int dequeue(){
         return queue.remove();
     }
 
@@ -23,35 +24,27 @@ final class myQueue{
 }
 
 class myStack{
- myQueue queue1 = new myQueue();
- myQueue queue2 = new myQueue();
-    public void dopush(Integer elem){
-        queue1.enqueue(elem);
-    }
 
-    public Integer dopop(){
+ myQueue queue = new myQueue();
 
-        if (queue1.isEmpty()) {
-            throw new RuntimeException("Empty Stack");
-        }
-        while(queue1.size()>1){
-            queue2.enqueue( queue1.dequeue());
-        }
-       
-        Integer result = queue1.dequeue();
-       while (!queue2.isEmpty()) {
-           queue1.enqueue(queue2.dequeue());
-       }
+ public void dopush(Integer elem){
+    queue.enqueue(elem);
+   
+   for(int i=1;i<queue.size();i++){
+         queue.enqueue(queue.dequeue());
+   }
+ }
 
-       return result;
-    }
+ public Integer dopop(){
+   if(queue.isEmpty()){
+     throw new RuntimeException("Stack is empty");
+   }
+    return queue.dequeue();
+ }
 }
 
-
-
-public class StackUsingQueue {
+public class StackUsingQueue2 {
     public static void main(String[] args) {
-        
         myStack stack = new myStack();
         stack.dopush(33);
         stack.dopush(34);
@@ -61,6 +54,6 @@ public class StackUsingQueue {
         System.out.println(stack.dopop());
         System.out.println(stack.dopop());
         System.out.println(stack.dopop());
-        System.out.println(stack.dopop());
+        // System.out.println(stack.dopop());
     }
 }
